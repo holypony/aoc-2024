@@ -1,13 +1,5 @@
-const fetchInputOfDayOne = async () =>{
+import { fetchInput } from "../Utils/fetch-input";
 
-    const response = await fetch('https://adventofcode.com/2024/day/1/input', {
-        headers: {
-            'Cookie': `session=${process.env.DAY_ONE_SESSION_COOKIE ?? ""}`
-        }
-    });
-    const text = await response.text();
-    return text
-}
 
 const parseInputOfDayOne = (input: string) => {
     const lines = input.split('\n');
@@ -38,10 +30,24 @@ const countDifference = (leftColumn: number[], rightColumn: number[]) => {
     return count;
 }
 
-export const main = async () => {
-    const input = await fetchInputOfDayOne();
-    const parsedInput = parseInputOfDayOne(input);
+const findSimilarityScore = (leftColumn: number[], rightColumn: number[]) => {
+    const rightFrequency = new Map();
+    rightColumn.forEach(num => {
+        rightFrequency.set(num, (rightFrequency.get(num) || 0) + 1);
+    });
+    
+    let similarityScore = 0;
+    leftColumn.forEach(leftNum => {
+        const appearances = rightFrequency.get(leftNum) || 0;
+        similarityScore += leftNum * appearances;
+    });
+    
+    return similarityScore;
+}
 
+export const main = async () => {
+    const input = await fetchInput(1);
+    const parsedInput = parseInputOfDayOne(input);
 
     const sortedLeftColumn = sortArray(parsedInput.leftColumn);
     const sortedRightColumn = sortArray(parsedInput.rightColumn);
@@ -50,16 +56,6 @@ export const main = async () => {
     //console.log(differences);
 
     const similarityScore = findSimilarityScore(sortedLeftColumn, sortedRightColumn);
-    console.log(similarityScore);
+    return 'Hello World! \n' + similarityScore;
 }
 
-const findSimilarityScore = (leftColumn: number[], rightColumn: number[]) => {
-    let similarityScore = 0;
-    
-    leftColumn.forEach(leftNum => {
-        const appearances = rightColumn.filter(rightNum => rightNum === leftNum).length;
-        similarityScore += leftNum * appearances;
-    });
-    
-    return similarityScore;
-}
