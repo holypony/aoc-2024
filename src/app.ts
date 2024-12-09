@@ -1,18 +1,16 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { mainDayTwo } from './Days/day-2';
-import { main } from './Days/day-1';
-import { mainDayThree } from './Days/day-3';
-import { mainDayFour } from './Days/day-4';
-import { mainDayFive } from './Days/day-5';
+import { mainDaySeven } from './Days/day-7';
+import { mainDayEight } from './Days/day-8';
+import { mainDayNine } from './Days/day-9';
 const app = express();
 const port = 3000;
 
 
 dotenv.config();
 app.get('/', async (req, res) => {
-  const answer = await mainDayFive();
-  res.send(answer);
+  const answer =  await mainDayNine();
+  res.send(answer.toString());
 });
 
 app.listen(port, () => {
