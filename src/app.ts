@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { mainDayTen } from './Days/day-10';
 import { mainDayEleven } from './Days/day-11';
 
-
+import { mainDayTwelve } from './Days/day-12';
 
 const app = express();
 const port = 3000;
@@ -12,7 +12,7 @@ const port = 3000;
 dotenv.config();
 app.get('/', async (req, res) => {
 
-  const answer = await mainDayEleven();
+  const answer = await mainDayTwelve();
   res.send(answer.toString());
 
 });

@@ -92,8 +92,6 @@ const move = (map:Map<string, Cell>, startCell: Cell, currentCell: Cell, trail: 
 
         if(currentCell.value === "9"){
             
-
-
             trailheads.add(trail);
             visualizeCoordinates(trail);
             console.log(trail.split("|").map(v => v.split(":")[0]).join(""));
