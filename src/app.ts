@@ -5,13 +5,14 @@ import { mainDayEleven } from "./Days/day-11";
 
 import { mainDayTwelve } from "./Days/day-12";
 import { mainDayThirteen } from "./Days/day-13";
+import { mainDayFourteen } from "./Days/day-14";
 
 const app = express();
 const port = 3000;
 
 dotenv.config();
 app.get("/", async (req, res) => {
-  const answer = await mainDayThirteen();
+  const answer = await mainDayFourteen();
   res.send(answer.toString());
 });
 
