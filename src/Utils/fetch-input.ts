@@ -1,6 +1,6 @@
 export const fetchInput = async (day: number) => {
     try {
-        const response = await fetch(`https://adventofcode.com/2024/day/${day}/input`, {
+        const response = await fetch(`https://adventofcode.com/2025/day/${day}/input`, {
             headers: {
             'Cookie': `session=${process.env.SESSION_COOKIE}`
             }
